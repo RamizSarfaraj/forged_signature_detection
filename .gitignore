@@ -1,0 +1,20 @@
+
+
+# folder for the signatures
+Signs/ 
+
+*.swp
+
+
+.ipynb_checkpoints/
+
+__pycache__/
+env/
+*.pptx
+*.png
+*.jpeg
+*.jpg
+extra/
+docs/
+*.pdf
+.vscode/
