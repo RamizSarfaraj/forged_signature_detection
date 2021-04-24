@@ -15,7 +15,6 @@ for filename in glob.iglob(directory + "**/**/*.jpg", recursive=True):
 
 # print(len(imagelist))
 # print(imagelist[2222])
-
 data = []
 for word in imagelist:
 	if word == 'Eng':
