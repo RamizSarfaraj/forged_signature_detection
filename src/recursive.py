@@ -25,5 +25,3 @@ for word in imagelist:
 print(len(data))
 print(data[1222])
 
-
-
