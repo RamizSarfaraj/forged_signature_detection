@@ -23,3 +23,4 @@ for word in imagelist:
 		data.append(0)
 
 print(len(data))
+
