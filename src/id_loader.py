@@ -25,24 +25,31 @@ def find_id(path):
     return id_lst
 
 
-English_path = "./../Signs/Processed-Original/"
+English_path = "./../Signs/Processed-Original/English/"
 
-# Eng_id = find_id(path=English_path)
+Eng_id = find_id(path=English_path)
 
-def interative_path(path):
-    lst = []
-    for new in os.listdir(path):
-        file_d = os.path.join(path, new)
-        if os.path.isdir(file_d):
-            interative_path(file_d)
-        else: 
-            lst.append(file_d)
-    return lst 
-
-en_id = interative_path(English_path)
-
-print(len(en_id))
+def labeller(id_list):
+    lst, lab = [], []
+    for im in id_list:
+        img = im
+        lb = 1
+        if img is not None:
+            lst.append(img)
+            lab.append(lb)
+    return lst, lab
 
 
-print(en_id)
+id_s, lab = labeller(Eng_id)
 
+
+data = {
+        'ids': id_s,
+        'labell': lab
+        }
+
+df = pd.DataFrame(data)
+
+print(df.shape)
+
+print(df.head())
