@@ -1,12 +1,12 @@
 import ProcessImage
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np 
+import numpy as np
 import cv2
 import os
 
 
-def id_loader(path):
+def Load_ID(path):
     """
     Takes in path of the parent folder and return a list of files in that directory.
     argument :
