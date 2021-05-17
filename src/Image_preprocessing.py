@@ -92,3 +92,8 @@ def Detect_box(image, Crop = False):
         im = image[best_box[1]: best_box[3], best_box[0]: best_box[2]]
 
     return im
+
+
+
+
+
