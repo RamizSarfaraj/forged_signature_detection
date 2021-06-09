@@ -88,12 +88,6 @@ def Detect_box(image, Crop = False):
     point_a = (best_box[0], best_box[1])
     point_b = (best_box[2], best_box[3])
 
-    if Crop:
-        im = image[best_box[1]: best_box[3], best_box[0]: best_box[2]]
-
+ if Crop:
+    im = image[best_box[1]: best_box[3], best_box[0]: best_box[2]]
     return im
-
-
-
-
-
