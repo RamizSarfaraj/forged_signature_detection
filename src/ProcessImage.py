@@ -7,6 +7,7 @@ def Load_Image(path):
     """
     This function takes in the path of the folder and read the images in the folder and returns a image list.
     """
+
     images = []
     for filename in os.listdir(path):
         file = os.path.join(path, filename)
@@ -22,6 +23,7 @@ def Resize_Image(image, dim=(500, 90)):
     This function takes a image and resize the image according to the dimension.
     And returns the resized image.
     """
+
     img = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
     return img
 
@@ -30,7 +32,9 @@ def Detect_box(image, Crop = False):
     """
     This function takes a list of image and finds the outer most boundaries and crops the image along the bounding box.
     Crop by default is False. If image is to be cropped make that statement True.
+
     """
+
     img_yuv = cv2.cvtColor(image, cv2.COLOR_BGR2YUV)
     img_y = np.zeros(img_yuv.shape[0:2], np.uint8)
     img_y[:, :] = img_yuv[:, :, 0]
@@ -70,10 +74,13 @@ def Detect_box(image, Crop = False):
 
     return im
 
+
+
 def Save_Image(imagelist, file_add, middle_name, extension):
     """
     This function takes in a list of images and saves it on particular provided directory.
     """
+
     for i in range(len(imagelist)):
         path = file_add + str(middle_name) + extension
         cv2.imwrite(path, imagelist[i])
@@ -126,3 +133,4 @@ if __name__ == "__main__":
     Detect_box()
     Save_Image()
     Process_Image()
+
