@@ -35,6 +35,7 @@ def Read_Image(path_list):
             list_im.append(img)
     return list_im
 
+
 def Resize_Image(image, dim=(500, 90)):
     """
     Takes in single image and resize the image according to the dimension.
@@ -48,8 +49,7 @@ def Resize_Image(image, dim=(500, 90)):
     return img
 
 
-
-def Detect_box(image, Crop = False):
+def Detect_box(image, Crop=False):
     """
     This function takes a list of image and finds the outer most boundaries and crops the image along the bounding box.
     Crop by default is False. If image is to be cropped make that statement True.
@@ -58,7 +58,7 @@ def Detect_box(image, Crop = False):
     img_y = np.zeros(img_yuv.shape[0:2], np.uint8)
     img_y[:, :] = img_yuv[:, :, 0]
 
-    img_blur = cv2.GaussianBlur(img_y, (5,5), 0)
+    img_blur = cv2.GaussianBlur(img_y, (5, 5), 0)
     edges = cv2.Canny(img_blur, 100, 500, apertureSize=3)
 
     contours, hier = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -74,20 +74,20 @@ def Detect_box(image, Crop = False):
     for c in new_contours:
         x, y, w, h = cv2.boundingRect(c)
         if best_box[0] < 0:
-            best_box = [x, y, x+w, y+h]
+            best_box = [x, y, x + w, y + h]
         else:
             if x < best_box[0]:
                 best_box[0] = x
             if y < best_box[1]:
                 best_box[1] = y
-            if x+w > best_box[2]:
-                best_box[2] = x+w
-            if y+h > best_box[3]:
-                best_box[3] = y+h
+            if x + w > best_box[2]:
+                best_box[2] = x + w
+            if y + h > best_box[3]:
+                best_box[3] = y + h
 
     point_a = (best_box[0], best_box[1])
     point_b = (best_box[2], best_box[3])
 
     if Crop:
-        im = image[best_box[1]: best_box[3], best_box[0]: best_box[2]]
+        im = image[best_box[1] : best_box[3], best_box[0] : best_box[2]]
         return im
