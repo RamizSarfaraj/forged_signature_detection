@@ -1,7 +1,7 @@
 
 
 # folder for the signatures
-Signs/ 
+Signs/
 
 *.swp
 
@@ -18,3 +18,4 @@ extra/
 docs/
 *.pdf
 .vscode/
+.vim/

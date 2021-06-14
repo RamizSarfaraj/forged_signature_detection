@@ -28,7 +28,7 @@ def Resize_Image(image, dim=(500, 90)):
     return img
 
 
-def Detect_box(image, Crop = False):
+def Detect_box(image, Crop=False):
     """
     This function takes a list of image and finds the outer most boundaries and crops the image along the bounding box.
     Crop by default is False. If image is to be cropped make that statement True.
@@ -39,7 +39,7 @@ def Detect_box(image, Crop = False):
     img_y = np.zeros(img_yuv.shape[0:2], np.uint8)
     img_y[:, :] = img_yuv[:, :, 0]
 
-    img_blur = cv2.GaussianBlur(img_y, (5,5), 0)
+    img_blur = cv2.GaussianBlur(img_y, (5, 5), 0)
     edges = cv2.Canny(img_blur, 100, 500, apertureSize=3)
 
     contours, hier = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -55,25 +55,24 @@ def Detect_box(image, Crop = False):
     for c in new_contours:
         x, y, w, h = cv2.boundingRect(c)
         if best_box[0] < 0:
-            best_box = [x, y, x+w, y+h]
+            best_box = [x, y, x + w, y + h]
         else:
             if x < best_box[0]:
                 best_box[0] = x
             if y < best_box[1]:
                 best_box[1] = y
-            if x+w > best_box[2]:
-                best_box[2] = x+w
-            if y+h > best_box[3]:
-                best_box[3] = y+h
+            if x + w > best_box[2]:
+                best_box[2] = x + w
+            if y + h > best_box[3]:
+                best_box[3] = y + h
 
     point_a = (best_box[0], best_box[1])
     point_b = (best_box[2], best_box[3])
 
     if Crop:
-        im = image[best_box[1]: best_box[3], best_box[0]: best_box[2]]
+        im = image[best_box[1] : best_box[3], best_box[0] : best_box[2]]
 
     return im
-
 
 
 def Save_Image(imagelist, file_add, middle_name, extension):
@@ -88,7 +87,9 @@ def Save_Image(imagelist, file_add, middle_name, extension):
     return middle_name
 
 
-def Process_Image(from_path, to_path, destination, middle_name, first_name='HIN_0', extension=".jpg"):
+def Process_Image(
+    from_path, to_path, destination, middle_name, first_name="HIN_0", extension=".jpg"
+):
     """
     This function takes the path of the parent folder and loads images from that folder,
     and also takes the folder address of the folder where new processed images to be saved.
@@ -119,8 +120,7 @@ def Process_Image(from_path, to_path, destination, middle_name, first_name='HIN_
         if box is not None:
             Box_Image.append(box)
 
-
-    file_add = to_path + destination + "/"+ first_name
+    file_add = to_path + destination + "/" + first_name
     count = Save_Image(Box_Image, file_add, middle_name, extension)
     print("images saved")
 
@@ -133,4 +133,3 @@ if __name__ == "__main__":
     Detect_box()
     Save_Image()
     Process_Image()
-
