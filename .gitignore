@@ -19,3 +19,8 @@ docs/
 *.pdf
 .vscode/
 .vim/
+*.jpg
+*.jpeg
+*.zip
+*.ipynb
+*.csv
